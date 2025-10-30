@@ -1,9 +1,13 @@
 import { join } from 'path';
+import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { UserModule } from './modules/users/users.module';
-import { Users } from './modules/users/entities/users.entity';
+import { JwtGuard } from './common/guards/jwt.guard';
+import { JwtStrategy } from './modules/auth/strategies/jwt.strategy';
+import { UsersModule } from './modules/users/users.module';
+import { User } from './modules/users/entities/user.entity';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -13,7 +17,7 @@ import { Users } from './modules/users/entities/users.entity';
       port: parseInt(process.env.POSTGRES_PORT || '4000'),
       password: process.env.POSTGRES_PASSWORD,
       username: process.env.POSTGRES_USERNAME,
-      entities: [Users],
+      entities: [User],
       database: process.env.POSTGRES_DB,
       synchronize: !!process.env.POSTGRES_SYNC,
       logging: !!process.env.POSTGRES_LOGGING,
@@ -25,9 +29,16 @@ import { Users } from './modules/users/entities/users.entity';
         fallthrough: false,
       },
     }),
-    UserModule,
+    UsersModule,
+    AuthModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtGuard,
+    },
+    JwtStrategy,
+  ],
 })
 export class AppModule {}
