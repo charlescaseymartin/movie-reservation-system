@@ -1,0 +1,2 @@
+npx run format
+npm run test
