@@ -19,7 +19,7 @@ export class AuthService {
       throw new BadRequestException('Invalid User Credentials.');
     }
 
-    const validPassword = bcrypt.compareSync(password,userWithEmail.password);
+    const validPassword = bcrypt.compareSync(password, userWithEmail.password);
     if (!validPassword) {
       throw new BadRequestException('Invalid User Credentials.');
     }

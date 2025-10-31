@@ -8,8 +8,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-const passwordRegEx =
-  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,50}$/;
+const passwordRegEx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,50}$/;
 
 export class CreateUserDto {
   @IsString()

@@ -41,9 +41,9 @@ import { AuthModule } from './modules/auth/auth.module';
     },
     JwtStrategy,
     {
-        provide: APP_GUARD,
-        useClass: UserRolesGuard,
-    }
+      provide: APP_GUARD,
+      useClass: UserRolesGuard,
+    },
   ],
 })
 export class AppModule {}
