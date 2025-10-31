@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { JwtGuard } from './common/guards/jwt.guard';
 import { JwtStrategy } from './modules/auth/strategies/jwt.strategy';
+import { UserRolesGuard } from './common/guards/user-roles.guard';
 import { UsersModule } from './modules/users/users.module';
 import { User } from './modules/users/entities/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
@@ -39,6 +40,10 @@ import { AuthModule } from './modules/auth/auth.module';
       useClass: JwtGuard,
     },
     JwtStrategy,
+    {
+        provide: APP_GUARD,
+        useClass: UserRolesGuard,
+    }
   ],
 })
 export class AppModule {}
