@@ -22,5 +22,5 @@ export class User {
   password: string;
 
   @Column({ type: 'enum', enum: UserRoles, default: UserRoles.User })
-  role: UserRoles;
+  roles: UserRoles;
 }
