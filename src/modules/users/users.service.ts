@@ -12,7 +12,7 @@ export class UsersService {
   ) {}
 
   createUser(createUserDto: CreateUserDto): Promise<User> {
-    const user: User = new User();
+    const user = new User();
     user.name = createUserDto.name;
     user.age = createUserDto.age;
     user.email = createUserDto.email;
@@ -22,29 +22,27 @@ export class UsersService {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    return await this.userRepository.findOneBy({ email });
+    const user = await this.userRepository.findOneBy({ email });
+    if (!user) return null;
+    return user;
   }
 
-  findAllUser(): Promise<User[]> {
-    return this.userRepository.find();
+  async findAllUser(): Promise<User[]> {
+    return await this.userRepository.find();
   }
 
-  viewUser(id: number): Promise<User | null> {
-    return this.userRepository.findOneBy({ id });
+  async getById(id: string): Promise<User | null> {
+    const user = await this.userRepository.findOneBy({ id });
+    if (!user) return null;
+    return user;
   }
 
-  updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    const user: User = new User();
-    user.name = updateUserDto.name ? updateUserDto.name : '';
-    user.age = updateUserDto.age ? updateUserDto.age : 0;
-    user.email = updateUserDto.email ? updateUserDto.email : '';
-    user.username = updateUserDto.username ? updateUserDto.username : '';
-    user.password = updateUserDto.name ? updateUserDto.name : '';
-    user.id = id;
-    return this.userRepository.save(user);
+  async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User | null> {
+    await this.userRepository.update({ id }, updateUserDto);
+    return await this.getById(id);
   }
 
-  removeUser(id: number): Promise<DeleteResult> {
+  removeUser(id: string): Promise<DeleteResult> {
     return this.userRepository.delete(id);
   }
 }

@@ -3,8 +3,8 @@ import { UserRoles } from '../../../common/enums/user-roles.enum';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({ type: 'varchar', length: 30 })
   name: string;
@@ -22,5 +22,5 @@ export class User {
   password: string;
 
   @Column({ type: 'enum', enum: UserRoles, default: UserRoles.User })
-  roles: UserRoles;
+  role: UserRoles;
 }

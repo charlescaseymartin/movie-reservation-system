@@ -35,18 +35,18 @@ export class UsersController {
   @Get(':id')
   @Roles(UserRoles.Admin)
   findOne(@Param('id') id: string) {
-    return this.userService.viewUser(+id);
+    return this.userService.getById(id);
   }
 
   @Patch(':id')
   @Roles(UserRoles.Admin)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.updateUser(+id, updateUserDto);
+    return this.userService.updateUser(id, updateUserDto);
   }
 
   @Delete(':id')
   @Roles(UserRoles.Admin)
   remove(@Param('id') id: string) {
-    return this.userService.removeUser(+id);
+    return this.userService.removeUser(id);
   }
 }
