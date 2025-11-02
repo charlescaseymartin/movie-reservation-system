@@ -1,7 +1,6 @@
 import {
   IsAlphanumeric,
   IsEmail,
-  IsEnum,
   IsInt,
   IsNotEmpty,
   IsString,
@@ -9,8 +8,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-const passwordRegEx =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,30}$/;
+const passwordRegEx = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,50}$/;
 
 export class CreateUserDto {
   @IsString()
@@ -32,17 +30,13 @@ export class CreateUserDto {
   @IsInt()
   age: number;
 
-  @IsString()
-  @IsEnum(['f', 'm', 'u'])
-  gender: string;
-
   @IsNotEmpty()
   @Matches(passwordRegEx, {
-    message: `Password must contain Minimum 8 and maximum 20 characters,
+    message: `Password must contain Minimum 8 and maximum 50 characters,
     at least one uppercase letter,
     one lowercase letter,
     one number and
-    one special character`,
+    one of these special characters: ! @ # $ % ^ & *`,
   })
   password: string;
 }
