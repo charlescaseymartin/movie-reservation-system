@@ -39,8 +39,10 @@ export class AuthService {
     const existingUser = await this.usersService.findByEmail(user.email);
     if (existingUser) throw new BadRequestException('Email Already Used.');
     const hashedPassword = await hash(user.password, 10);
-    const newUser: User = { ...user, password: hashedPassword } as User;
-    await this.usersService.createUser(newUser);
-    return this.login(newUser);
+    const createdUser = await this.usersService.createUser({
+      ...user,
+      password: hashedPassword,
+    });
+    return this.login(createdUser);
   }
 }

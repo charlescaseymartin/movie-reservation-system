@@ -6,17 +6,20 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', length: 30 })
-  name: string;
+  @Column({ type: 'varchar', length: 150 })
+  firstName: string;
 
-  @Column({ type: 'varchar', length: 15 })
+  @Column({ type: 'varchar', length: 150 })
+  lastName: string;
+
+  @Column({ type: 'varchar', length: 150 })
   username: string;
 
-  @Column({ type: 'varchar', length: 40 })
+  @Column({ type: 'varchar', length: 150 })
   email: string;
 
-  @Column({ type: 'int' })
-  age: number;
+  @Column({ type: 'date' })
+  dateOfBirth: Date;
 
   @Column({ type: 'varchar' })
   password: string;

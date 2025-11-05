@@ -1,7 +1,7 @@
 import {
   IsAlphanumeric,
   IsEmail,
-  IsInt,
+  IsDate,
   IsNotEmpty,
   IsString,
   Matches,
@@ -14,7 +14,12 @@ export class CreateUserDto {
   @IsString()
   @MinLength(2, { message: 'Name must have atleast 2 characters.' })
   @IsNotEmpty()
-  name: string;
+  firstName: string;
+
+  @IsString()
+  @MinLength(2, { message: 'Name must have atleast 2 characters.' })
+  @IsNotEmpty()
+  lastName: string;
 
   @IsNotEmpty()
   @MinLength(3, { message: 'Username must have atleast 3 characters.' })
@@ -27,8 +32,8 @@ export class CreateUserDto {
   @IsEmail(undefined, { message: 'Please provide valid Email.' })
   email: string;
 
-  @IsInt()
-  age: number;
+  @IsDate()
+  dateOfBirth: string;
 
   @IsNotEmpty()
   @Matches(passwordRegEx, {
