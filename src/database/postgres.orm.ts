@@ -3,7 +3,9 @@ import { SeederOptions } from 'typeorm-extension';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import * as dotenv from 'dotenv';
 
-dotenv.config({ path: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev' });
+dotenv.config({
+  path: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev',
+});
 
 const {
   POSTGRES_HOST,
@@ -35,4 +37,4 @@ export const PostgresOrmConfig: DataSourceOptions & SeederOptions = {
 
 const dataSource = new DataSource(PostgresOrmConfig);
 export default dataSource;
-dataSource.initialize();
+if (!process.env.NODE_ENV) dataSource.initialize();

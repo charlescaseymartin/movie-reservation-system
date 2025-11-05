@@ -9,6 +9,11 @@ import { JwtStrategy } from './modules/auth/strategies/jwt.strategy';
 import { UserRolesGuard } from './common/guards/user-roles.guard';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { MoviesModule } from './modules/movies/movies.module';
+import { GenresModule } from './modules/genres/genres.module';
+import { CastMembersModule } from './modules/cast-members/cast-members.module';
+import { DirectorsModule } from './modules/directors/directors.module';
+import { WritersModule } from './modules/writers/writers.module';
 
 @Module({
   imports: [
@@ -22,6 +27,11 @@ import { AuthModule } from './modules/auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    MoviesModule,
+    GenresModule,
+    CastMembersModule,
+    DirectorsModule,
+    WritersModule,
   ],
   controllers: [],
   providers: [
