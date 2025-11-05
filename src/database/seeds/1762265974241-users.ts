@@ -4,15 +4,15 @@ import { hash } from 'bcrypt';
 import { User } from '../../modules/users/entities/user.entity';
 import { UserRoles } from '../../common/enums/user-roles.enum';
 
-export class AdminUser1762032267320 implements Seeder {
+export class Users1762265974241 implements Seeder {
   track = false;
 
   public async run(
     dataSource: DataSource,
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
-    const password = await hash('admin@user01', 10);
+    const password = await hash('user@user01', 10);
     const userFactory = factoryManager.get(User);
-    await userFactory.saveMany(3, { password, role: UserRoles.Admin });
+    await userFactory.saveMany(60, { password, role: UserRoles.User });
   }
 }
