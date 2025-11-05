@@ -6,4 +6,3 @@ export default setSeederFactory(Director, (faker) => {
   director.name = faker.person.fullName();
   return director;
 });
-

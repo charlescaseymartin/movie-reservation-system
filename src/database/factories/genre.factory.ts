@@ -6,4 +6,3 @@ export default setSeederFactory(Genre, (faker) => {
   genre.name = faker.music.genre();
   return genre;
 });
-

@@ -6,4 +6,3 @@ export default setSeederFactory(Writer, (faker) => {
   writer.name = faker.person.fullName();
   return writer;
 });
-
