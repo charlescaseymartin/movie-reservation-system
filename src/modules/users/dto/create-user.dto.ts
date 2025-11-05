@@ -1,7 +1,7 @@
 import {
   IsAlphanumeric,
   IsEmail,
-  IsDate,
+  IsDateString,
   IsNotEmpty,
   IsString,
   Matches,
@@ -32,7 +32,7 @@ export class CreateUserDto {
   @IsEmail(undefined, { message: 'Please provide valid Email.' })
   email: string;
 
-  @IsDate()
+  @IsDateString()
   dateOfBirth: string;
 
   @IsNotEmpty()
